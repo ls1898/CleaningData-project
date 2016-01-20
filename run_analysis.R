@@ -25,7 +25,7 @@ CompTable <- rbind(testTable, trainTable)
 ## Question 2: 
 ## Read column names, and choose only the relelvant ones - containing either "mean" or "std"
 features <- read.table("UCI HAR Dataset/features.txt")
-col_names <- grepl("mean", as.character(features$V2)) | grepl("std", as.character(features$V2))
+col_names <- (grepl("mean", as.character(features$V2)) | grepl("std", as.character(features$V2))) & !grepl("Freq", as.character(features$V2))
 MSTable <- CompTable[,col_names]
 
 ## Question 3: 
@@ -48,10 +48,10 @@ dataMSTable <- tbl_df(MSTable)
 ## number of rows
 tidySet <- dataMSTable %>%
   group_by(activity_name, subject) %>%
-  mutate_each(funs(mean), 1:79) %>%
+  mutate_each(funs(mean), 1:66) %>%
   unique %>%
   ## Reorder the data so 1st column is the participant's number and second is activity
-  select(81, 80, 1:79)
+  select(68, 67, 1:66)
 
 ## Save the new tidy data to a new csv file for ease of continued work
 write.csv(tidySet, file = "tidySet.csv",row.names = FALSE)
