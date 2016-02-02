@@ -1,4 +1,4 @@
-# tidySetCodebook: Read me
+# tidySetCodebook
 
 This file contains explanation about the data processing procedure, as well as some information about the data itself.
 - a script called run_analysis.R, 
