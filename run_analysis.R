@@ -44,14 +44,11 @@ names(MSTable) <- c(as.character(features$V2[col_names]), "activity_name", "subj
 dataMSTable <- tbl_df(MSTable)
 
 ## Apply the mean for each of the columns in the table based on grouping by activity namd and subject, 
-## since this will create several rows of the same values, I also use unique to get the desired 30 (subjects) X 6 (activities) 
+## using summarise_each with the mean function to get the desired 30 (subjects) X 6 (activities) 
 ## number of rows
 tidySet <- dataMSTable %>%
-  group_by(activity_name, subject) %>%
-  mutate_each(funs(mean), 1:66) %>%
-  unique %>%
-  ## Reorder the data so 1st column is the participant's number and second is activity
-  select(68, 67, 1:66)
+  group_by(subject, activity_name) %>%
+  summarise_each(funs(mean), 1:66) 
 
-## Save the new tidy data to a new csv file for ease of continued work
-write.csv(tidySet, file = "tidySet.csv",row.names = FALSE)
+## Save the new tidy data to a new txt file
+write.table(tidySet, file = "tidySet.txt",row.names = FALSE)
