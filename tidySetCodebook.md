@@ -20,7 +20,7 @@ There are 180 observations in the file. They represent the averages of mean and 
 With a total of 30 subjects and 6 types of activities – we have 180 observations to account for (a row per subject, activity pair). 
 
 The 3:68 columns in the dataset represent averages of the following measurements for each pair:
-tBodyAcc-mean()-X
+3. tBodyAcc-mean()-X
 4.	tBodyAcc-mean()-Y
 5.	tBodyAcc-mean()-Z 
 6.	tBodyAcc-std()-X
